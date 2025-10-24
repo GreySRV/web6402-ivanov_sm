@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RW - Каталог видеоигр</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">RW</a>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="collection.html">Коллекции</a></li>
+                <li><a href="profile.html">Профиль</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Секция с каталогом игр в виде ТАБЛИЦЫ-ПЛИТКИ -->
+        <section class="games-catalog">
+            <h1>Каталог игр</h1>
+		<table class="games-table" cellspacing="20">
+		    <tbody>
+		        <tr>
+		            <!-- Карточка игры 1 -->
+		            <td class="game-card">
+                		<a href="game.html">
+                    		<img src="images/game-cover-witcher.jpg" alt="The Witcher 3">
+                    		<h3>The Witcher 3: Wild Hunt</h3>
+                    		<p class="year">2015</p>
+		                </a>
+		            </td>
+		            <!-- Карточка игры 2 -->
+		            <td class="game-card">
+                <a href="game.html">
+ 		                   <img src="images/game-cover-cyberpunk.jpg" alt="Cyberpunk 2077">
+ 		                   <h3>Cyberpunk 2077</h3>
+		                    <p class="year">2020</p>
+		                </a>
+		            </td>
+		            <!-- Карточка игры 3 -->
+		            <td class="game-card">
+		                <a href="game.html">
+		                    <img src="images/game-cover-halflife.jpg" alt="Half-Life 2">
+		                    <h3>Half-Life 2</h3>
+		                    <p class="year">2004</p>
+                </a>
+		            </td>
+		        </tr>
+		    </tbody>
+		</table>
+        </section>
+
+        <!-- Секция с популярными коллекциями -->
+        <section class="featured-collections">
+            <h2>Популярные коллекции</h2>
+            <div class="collections-list">
+                <div class="collection-item">
+                    <a href="collection.html">
+                        <h3>Лучшие RPG всех времён</h3>
+                        <p>Подборка от: <span>AngryVideoGameNerd</span></p>
+                    </a>
+                </div>
+                <div class="collection-item">
+                    <a href="collection.html">
+                        <h3>Совсем не инди-игры</h3>
+                        <p>Подборка от: <span>Zulin's v-log</span></p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 RW. Все права на игры принадлежат их правообладателям. Все права на упомянутых личностей принадлежат менеджерам.</p>
+    </footer>
+</body>
+</html>
