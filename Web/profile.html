@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя - RW</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">RW</a>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="collection.html">Коллекции</a></li>
+                <li><a href="profile.html">Профиль</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Информация о пользователе -->
+        <section class="user-profile">
+            <div class="user-header">
+                <img src="images/user-avatar.jpg" alt="Аватар пользователя" class="user-avatar">
+                <div class="user-info">
+                    <h1>StarPlatinum</h1>
+                    <p class="user-stats">На сайте с: <span>1987</span></p>
+                    <p class="user-stats">Коллекций создано: <span>2</span></p>
+                    <p class="user-stats">Оценок оставлено: <span>12</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Коллекции пользователя -->
+        <section class="user-collections">
+            <h2>Мои коллекции</h2>
+            <div class="collections-grid">
+                <div class="user-collection-item">
+                    <a href="collection.html">
+                        <h3>Бэклог</h3>
+                        <p>3 игры · Обновлено сегодня</p>
+                    </a>
+                </div>
+                <div class="user-collection-item">
+                    <a href="collection.html">
+                        <h3>Игры детства</h3>
+                        <p>5 игр · Обновлено неделю назад</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Настройки профиля -->
+        <section class="profile-settings">
+            <h2>Настройки профиля</h2>
+            <form class="settings-form">
+                <div class="form-group">
+                    <label for="username">Имя пользователя:</label>
+                    <input type="text" id="username" value="StarPlatinum">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" value="DIO_l0x@spdvgn.com">
+                </div>
+                <div class="form-group">
+                    <label for="theme">Тема сайта:</label>
+                    <select id="theme">
+                        <option value="dark">Тёмная</option>
+                        <option value="light">Светлая</option>
+                    </select>
+                </div>
+                <button type="submit" class="save-button">Сохранить изменения</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 RW. Все права на игры принадлежат их правообладателям. Все права на упомянутых личностей принадлежат менеджерам.</p>
+    </footer>
+</body>
+</html>
