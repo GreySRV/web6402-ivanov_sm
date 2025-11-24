@@ -118,7 +118,6 @@ function deepEqual(a, b) {
     for (const key of keysA) {
         if (!keysB.includes(key)) return false;
 
-        // Рекурсивно сравниваем значения
         if (!deepEqual(a[key], b[key])) return false;
     }
 
