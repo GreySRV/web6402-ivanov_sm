@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RW - Каталог видеоигр</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Блок header -->
+    <header class="header">
+        <!-- Блок nav -->
+        <nav class="nav">
+            <a href="auth.html" class="logo nav__logo">RW</a>
+            <ul class="nav__list">
+                <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                <li class="nav__item"><a href="collection.html" class="nav__link">Коллекции</a></li>
+                <li class="nav__item"><a href="profile.html" class="nav__link">Профиль</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main">
+        <!-- Блок games-catalog -->
+        <section class="games-catalog">
+            <h1 class="games-catalog__title">Каталог игр</h1>
+            <!-- Блок games-grid -->
+            <div class="games-grid">
+                <!-- Блок game-card -->
+                <div class="game-card">
+                    <a href="game.html" class="game-card__link">
+                        <img src="images/game-cover-witcher.jpg" alt="The Witcher 3" class="game-card__image">
+                        <h3 class="game-card__title">The Witcher 3: Wild Hunt</h3>
+                        <p class="game-card__year year">2015</p> <!-- year остаётся модификатором или вспомогательным классом -->
+                    </a>
+                </div>
+                <!-- Блок game-card -->
+                <div class="game-card">
+                    <a href="game.html" class="game-card__link">
+                        <img src="images/game-cover-cyberpunk.jpg" alt="Cyberpunk 2077" class="game-card__image">
+                        <h3 class="game-card__title">Cyberpunk 2077</h3>
+                        <p class="game-card__year year">2020</p>
+                    </a>
+                </div>
+                <!-- Блок game-card -->
+                <div class="game-card">
+                    <a href="game.html" class="game-card__link">
+                        <img src="images/game-cover-halflife.jpg" alt="Half-Life 2" class="game-card__image">
+                        <h3 class="game-card__title">Half-Life 2</h3>
+                        <p class="game-card__year year">2004</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Блок featured-collections -->
+        <section class="featured-collections">
+            <h2 class="featured-collections__title">Популярные коллекции</h2>
+            <!-- Блок collections-list -->
+            <div class="collections-list">
+                <!-- Блок collection-item -->
+                <div class="collection-item">
+                    <a href="collection.html" class="collection-item__link">
+                        <h3 class="collection-item__title">Лучшие RPG всех времён</h3>
+                        <p class="collection-item__description">Подборка от: <span class="collection-item__creator">AngryVideoGameNerd</span></p>
+                    </a>
+                </div>
+                <!-- Блок collection-item -->
+                <div class="collection-item">
+                    <a href="collection.html" class="collection-item__link">
+                        <h3 class="collection-item__title">Совсем не инди-игры</h3>
+                        <p class="collection-item__description">Подборка от: <span class="collection-item__creator">Zulin's v-log</span></p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Блок footer -->
+    <footer class="footer">
+        <p class="footer__text">&copy; 2025 RW. Все права на игры принадлежат их правообладателям. Все права на упомянутых личностей принадлежат менеджерам.</p>
+    </footer>
+</body>
+</html>
