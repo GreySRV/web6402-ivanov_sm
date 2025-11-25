@@ -1,0 +1,536 @@
+/* --- CSS Переменные (Цвета) --- */
+:root {
+  /* Основные цвета фона */
+  --bg-main: #0a0a0a; /* Основной фон страницы */
+  --bg-header-footer: #111111; /* Фон шапки и подвала */
+  --bg-card: #1a1a1a; /* Фон карточек, облачков */
+  --bg-input: #2a2a2a; /* Фон полей ввода */
+  --bg-specs-row-hover: #2a2a2a; /* Фон строки при наведении (резерв, если градиент не используется) */
+
+  /* Основные цвета текста */
+  --text-main: #e0e0e0; /* Основной светлый текст */
+  --text-secondary: #adacab; /* Вторичный текст (серый) */
+  --text-muted: #848483; /* Приглушённый текст (серый) */
+  --text-accent: #df9f1f; /* Акцентный жёлтый для текста */
+  --text-accent-light: #eecd8a; /* Светлый жёлтый для текста */
+  --text-specs-hover: #000; /* Цвет текста в строке при наведении (тёмный) */
+
+  /* Цвета акцентов и границ */
+  --accent-main: #df9f1f; /* Основной акцентный жёлтый */
+  --accent-light: #eecd8a; /* Светлый акцентный жёлтый */
+  --accent-gradient-start: #eecd8a; /* Начало градиента подсветки */
+  --accent-gradient-end: #df9f1f;   /* Конец градиента подсветки */
+  --border-dark: #333; /* Тёмная граница */
+  --footer-text: #503c32; /* Цвет текста в футере */
+}
+
+/* --- Сброс стилей --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- Основные стили --- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* --- Блок header --- */
+.header {
+    background-color: var(--bg-header-footer);
+    padding: 1rem 0;
+    border-bottom: 2px solid var(--accent-main);
+}
+
+/* --- Блок nav --- */
+.nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.nav__list {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav__link {
+    text-decoration: none;
+    color: var(--text-main);
+    transition: color 0.3s;
+}
+
+.nav__link:hover {
+    color: var(--accent-main);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-main) !important;
+}
+
+/* --- Блок main --- */
+.main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* --- Блок games-grid (для index.html, collection.html) --- */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Используем Grid */
+    gap: 20px; /* Эквивалент cellspacing="20" */
+    width: 100%;
+}
+
+/* --- Блок game-card (для index.html) --- */
+.game-card {
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid var(--border-dark);
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(223, 159, 31, 0.3);
+}
+
+.game-card__link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.game-card__image {
+    width: 100%;
+    max-width: 200px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.game-card__title {
+    color: var(--text-accent);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.year { /* Используется как вспомогательный класс */
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* --- Блок collection-item (для index.html) --- */
+.collection-item {
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid var(--border-dark);
+}
+
+.collection-item__link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start; /* Используем Flexbox */
+}
+
+.collection-item__title {
+    color: var(--text-accent);
+    margin-bottom: 0.5rem;
+}
+
+.collection-item__creator {
+    color: var(--text-main);
+    font-weight: bold;
+}
+
+/* --- Блок collection-game-item (для collection.html) --- */
+.collection-game-item {
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid var(--border-dark);
+}
+
+.collection-game-item__link {
+    text-decoration: none;
+    color: inherit;
+    display: flex; /* Используем Flexbox */
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.collection-game-item__image {
+    width: 100px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.collection-game-item__title { /* Блок game-info__title внутри collection-game-item */
+    color: var(--text-accent);
+    margin-bottom: 0.5rem;
+}
+
+.collection-game-item__rating { /* Блок game-rating внутри collection-game-item */
+    color: var(--text-accent-light);
+    font-weight: bold;
+}
+
+/* --- Блок game-header (для game.html) --- */
+.game-header {
+    display: flex; /* Используем Flexbox */
+    gap: 2rem;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+}
+
+.game-cover__image {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.game-info__title {
+    color: var(--text-accent);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.rating-score {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-accent);
+}
+
+.rating-votes {
+    color: var(--text-muted);
+    margin-left: 0.5rem;
+}
+
+/* --- Блок specs-table (для game.html) --- */
+.specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.specs-table__cell, /* Объединяет th и td */
+.specs-table th,
+.specs-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-dark);
+    text-align: left; /* Выравнивание по левому краю */
+    transition: color 0.1s ease; /* Плавный переход цвета текста */
+}
+
+.specs-table__header, /* Элемент заголовка */
+.specs-table th {
+    background-color: var(--bg-card);
+    color: var(--text-accent-light);
+    width: 200px;
+    font-weight: normal;
+}
+
+.specs-table__data, /* Элемент данных */
+.specs-table td {
+    background-color: var(--bg-main); /* Используем основной фон */
+    color: var(--text-main); /* Цвет текста по умолчанию */
+}
+
+/* --- Анимация "переливания" для ячеек (td) таблицы specs-table --- */
+.specs-table tbody tr:hover .specs-table__data, /* Целевое правило для td при наведении на tr */
+.specs-table tbody tr:hover td {
+    background-image: linear-gradient(to right, var(--accent-gradient-start), var(--accent-gradient-end), var(--accent-gradient-start));
+    background-size: 200% 100%;
+    background-position: 0% 0; /* Начальная позиция градиента при наведении */
+    transition: background-image 0.3s ease, color 0.1s ease;
+    color: var(--text-specs-hover); /* Меняем цвет только у td */
+}
+
+/* Анимация "переливания" - движение градиента слева направо, если курсор на строке */
+.specs-table tbody tr:hover .specs-table__data, /* Целевое правило для td при наведении на tr */
+.specs-table tbody tr:hover td {
+    animation: gradientFlow 1.5s linear infinite;
+}
+
+/* Определяем ключевые кадры анимации */
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 0; /* Начальное положение */
+    }
+    100% {
+        background-position: 200% 0; /* Сдвигаем градиент на 2 ширины ячейки */
+    }
+}
+
+/* Убираем анимацию и цвет текста с th при наведении на строку */
+.specs-table tbody tr:hover .specs-table__header, /* Целевое правило для th при наведении на tr */
+.specs-table tbody tr:hover th {
+    animation: none; /* Убедимся, что th не анимируется */
+    background-image: none; /* Убедимся, что th не получит градиент */
+    /* Цвет текста не изменяется, так как не переопределяется */
+}
+
+/* --- Блок user-avatar (для profile.html) --- */
+.user-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-main);
+}
+
+/* --- Блок user-header (для profile.html) --- */
+.user-header {
+    display: flex; /* Используем Flexbox */
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.user-info__title { /* Блок h1 внутри user-info */
+    color: var(--text-accent);
+    margin-bottom: 1rem;
+}
+
+.user-stats {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.user-stats span {
+    color: var(--text-main);
+    font-weight: bold;
+}
+
+/* --- Блок collections-grid (для profile.html) --- */
+.collections-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* --- Блок user-collection-item (для profile.html) --- */
+.user-collection-item__link {
+    text-decoration: none;
+    color: inherit;
+    display: block; /* Ссылка занимает всю область карточки */
+    padding: 1rem;
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    border: 1px solid var(--border-dark);
+    transition: background-color 0.3s;
+}
+
+.user-collection-item__link:hover {
+    background-color: var(--bg-card); /* Оставляем цвет при наведении или добавляем другой эффект */
+}
+
+.user-collection-item__title {
+    color: var(--text-accent);
+    margin-bottom: 0.5rem;
+}
+
+/* --- Блок settings-form (для profile.html) --- */
+.settings-form {
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-dark);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.form-group__input,
+.form-group__select {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-dark);
+    border-radius: 4px;
+    color: var(--text-main);
+}
+
+.save-button {
+    background-color: var(--accent-main);
+    color: #000;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.save-button:hover {
+    background-color: var(--accent-light);
+}
+
+/* --- Блок auth-container (для auth.html) --- */
+.auth-container {
+    display: flex; /* Используем Flexbox */
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px); /* Высота минус высота header и footer примерно */
+    padding: 2rem 0; /* Добавим отступы сверху и снизу */
+}
+
+/* --- Блок cloud-box (для auth.html) --- */
+.cloud-box {
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px; /* Ограничиваем ширину */
+    border: 1px solid var(--border-dark);
+}
+
+.cloud-box__title { /* Блок h1 внутри cloud-box */
+    color: var(--text-accent);
+    margin-bottom: 1.5rem;
+    text-align: center; /* Центрируем заголовок формы */
+}
+
+/* --- Блок login-form (для auth.html) --- */
+.login-form {
+    display: flex;
+    flex-direction: column; /* Используем Flexbox */
+    gap: 1rem; /* Отступ между рядами */
+}
+
+/* --- Блок form-row (для auth.html) --- */
+.form-row {
+    display: flex; /* Используем Flexbox */
+    flex-wrap: wrap; /* Позволяем элементам переноситься на новую строку при необходимости */
+    gap: 1rem; /* Отступ между элементами внутри ряда */
+    align-items: center; /* Выравнивание по центру по вертикали */
+}
+
+/* --- Блок form-input-group (для auth.html) --- */
+.form-input-group {
+    flex: 1; /* Позволяет элементам растягиваться */
+    min-width: 200px; /* Минимальная ширина для адаптивности */
+}
+
+.form-input-group__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.form-input-group__input {
+    width: 100%;
+    padding: 0.75rem; /* Чуть увеличим отступы в полях */
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-dark);
+    border-radius: 4px;
+    color: var(--text-main);
+    font-size: 1rem; /* Установим размер шрифта */
+}
+
+.form-input-group__link { /* Ссылка "Забыли пароль?" */
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-top: 0.25rem; /* Маленький отступ сверху */
+}
+
+.form-input-group__link:hover {
+    color: var(--text-accent);
+    text-decoration: underline;
+}
+
+/* --- Блок form-addon-group (для auth.html) --- */
+.form-addon-group {
+    flex: 1; /* Позволяет элементам растягиваться */
+    min-width: 200px; /* Минимальная ширина для адаптивности */
+}
+
+.form-addon-group__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.form-addon-group__checkbox {
+    width: auto; /* Сбрасываем ширину для чекбокса */
+    margin-right: 0.5rem; /* Отступ справа от чекбокса */
+}
+
+.form-addon-group__select {
+    width: 100%;
+    padding: 0.75rem; /* Чуть увеличим отступы в полях */
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-dark);
+    border-radius: 4px;
+    color: var(--text-main);
+    font-size: 1rem; /* Установим размер шрифта */
+}
+
+.form-addon-group__button { /* Кнопка "Войти" */
+    background-color: var(--accent-main);
+    color: #000; /* Чёрный текст на жёлтом фоне */
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    width: 100%; /* Занимает всю ширину своей ячейки */
+    font-size: 1rem; /* Установим размер шрифта */
+}
+
+.form-addon-group__button:hover {
+    background-color: var(--accent-light);
+}
+
+/* --- Блок footer --- */
+.footer {
+    background-color: var(--bg-header-footer);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 3rem;
+    border-top: 1px solid var(--border-dark);
+}
+
+.footer__text {
+    color: var(--footer-text);
+    font-size: 0.9rem;
+}
+
+/* --- Заголовки секций --- */
+h1, h2 {
+    color: var(--text-main);
+    margin-bottom: 1rem;
+}
+
+h2 {
+    border-bottom: 1px solid var(--border-dark);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
