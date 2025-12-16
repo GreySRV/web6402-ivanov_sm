@@ -142,11 +142,7 @@ body {
     font-size: 1.1rem;
 }
 
-<<<<<<< Updated upstream
-.year { /* Используется как вспомогательный класс */
-=======
 .year { /* Оставлен как есть, используется как вспомогательный класс */
->>>>>>> Stashed changes
     color: var(--text-muted);
     font-size: 0.9rem;
 }
@@ -272,7 +268,7 @@ body {
     color: var(--text-main); /* Цвет текста по умолчанию */
 }
 
-/* --- Анимация "переливания" для ячеек (td) таблицы specs-table --- */
+/* --- Анимация "переливания" для ЯЧЕЕК (td) таблицы specs-table --- */
 .specs-table tbody tr:hover .specs-table__data, /* Целевое правило для td при наведении на tr */
 .specs-table tbody tr:hover td {
     background-image: linear-gradient(to right, var(--accent-gradient-start), var(--accent-gradient-end), var(--accent-gradient-start));
@@ -389,22 +385,14 @@ body {
     width: 100%;
     padding: 0.5rem;
     background-color: var(--bg-input);
-<<<<<<< Updated upstream
-    border: 1px solid var(--border-input);
-=======
     border: 1px solid var(--border-input); /* Используем переменную для границы полей ввода */
->>>>>>> Stashed changes
     border-radius: 4px;
     color: var(--text-main);
 }
 
 .save-button {
     background-color: var(--accent-main);
-<<<<<<< Updated upstream
-    color: var(--button-text-accent);
-=======
     color: var(--button-text-accent); /* Используем переменную для цвета текста */
->>>>>>> Stashed changes
     padding: 0.75rem 1.5rem;
     border: none;
     border-radius: 4px;
@@ -463,26 +451,32 @@ body {
 .form-input-group {
     flex: 1; /* Позволяет элементам растягиваться */
     min-width: 200px; /* Минимальная ширина для адаптивности */
+    position: relative; /* Для позиционирования hint */
 }
 
 .form-input-group__label {
     display: block;
     margin-bottom: 0.5rem;
     color: var(--text-secondary);
+    transition: color 0.3s ease;
 }
 
 .form-input-group__input {
     width: 100%;
     padding: 0.75rem; /* Чуть увеличим отступы в полях */
     background-color: var(--bg-input);
-<<<<<<< Updated upstream
-    border: 1px solid var(--border-input);
-=======
     border: 1px solid var(--border-input); /* Используем переменную для границы полей ввода */
->>>>>>> Stashed changes
     border-radius: 4px;
     color: var(--text-main);
     font-size: 1rem; /* Установим размер шрифта */
+}
+
+.form-input-group__hint {
+    display: block; /* Отображаем как блочный элемент */
+    font-size: 0.8rem; /* Меньше размер шрифта */
+    margin-top: 0.25rem; /* Отступ сверху */
+    color: var(--text-muted); /* Серый цвет */
+    transition: color 0.3s ease; /* Плавный переход цвета*/
 }
 
 .form-input-group__link { /* Ссылка "Забыли пароль?" */
@@ -518,11 +512,7 @@ body {
     width: 100%;
     padding: 0.75rem; /* Чуть увеличим отступы в полях */
     background-color: var(--bg-input);
-<<<<<<< Updated upstream
-    border: 1px solid var(--border-input);
-=======
     border: 1px solid var(--border-input); /* Используем переменную для границы полей ввода */
->>>>>>> Stashed changes
     border-radius: 4px;
     color: var(--text-main);
     font-size: 1rem; /* Установим размер шрифта */
@@ -530,11 +520,7 @@ body {
 
 .form-addon-group__button { /* Кнопка "Войти" */
     background-color: var(--accent-main);
-<<<<<<< Updated upstream
-    color: var(--button-text-accent);
-=======
     color: var(--button-text-accent); /* Используем переменную для цвета текста */
->>>>>>> Stashed changes
     padding: 0.75rem 1.5rem;
     border: none;
     border-radius: 4px;
@@ -554,10 +540,7 @@ body {
     background-color: var(--bg-header-footer);
     padding: 2rem;
     text-align: center;
-<<<<<<< Updated upstream
-=======
     /* margin-top: 3rem; Убираем margin-top */
->>>>>>> Stashed changes
     border-top: 1px solid var(--border-dark);
     /* Добавляем Flexbox для footer */
     flex-shrink: 0; /* Не даем footer сжиматься */

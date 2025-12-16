@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя - RW</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Блок header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="auth.html" class="logo nav__logo">RW</a>
+            <ul class="nav__list">
+                <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                <li class="nav__item"><a href="collection.html" class="nav__link">Коллекции</a></li>
+                <li class="nav__item"><a href="profile.html" class="nav__link">Профиль</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main">
+        <!-- Блок user-profile -->
+        <section class="user-profile">
+            <div class="user-profile__header user-header">
+                <img src="images/user-avatar.jpg" alt="Аватар пользователя" class="user-avatar user-header__avatar">
+                <div class="user-profile__info user-info">
+                    <h1 class="user-info__title">StarPlatinum</h1>
+                    <p class="user-info__stat user-stats">На сайте с: <span class="user-stats__value">1987</span></p>
+                    <p class="user-info__stat user-stats">Коллекций создано: <span class="user-stats__value">2</span></p>
+                    <p class="user-info__stat user-stats">Оценок оставлено: <span class="user-stats__value">12</span></p>
+                </div>
+            </div>
+        </section>
+        <!-- Блок user-collections -->
+        <section class="user-collections">
+            <h2 class="user-collections__title">Мои коллекции</h2>
+            <!-- Блок collections-grid -->
+            <div class="collections-grid">
+                <!-- Блок user-collection-item -->
+                <div class="user-collection-item">
+                    <a href="collection.html" class="user-collection-item__link">
+                        <h3 class="user-collection-item__title">Бэклог</h3>
+                        <p class="user-collection-item__meta">3 игры · Обновлено сегодня</p>
+                    </a>
+                </div>
+                <!-- Блок user-collection-item -->
+                <div class="user-collection-item">
+                    <a href="collection.html" class="user-collection-item__link">
+                        <h3 class="user-collection-item__title">Игры детства</h3>
+                        <p class="user-collection-item__meta">5 игр · Обновлено неделю назад</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Блок profile-settings -->
+        <section class="profile-settings">
+            <h2 class="profile-settings__title">Настройки профиля</h2>
+            <!-- Блок settings-form -->
+            <form class="settings-form">
+                <!-- Блок form-group -->
+                <div class="form-group">
+                    <label for="username" class="form-group__label">Имя пользователя:</label>
+                    <input type="text" id="username" value="StarPlatinum" class="form-group__input">
+                </div>
+                <!-- Блок form-group -->
+                <div class="form-group">
+                    <label for="email" class="form-group__label">Email:</label>
+                    <input type="email" id="email" value="DIO_l0x@spdvgn.com" class="form-group__input">
+                </div>
+                <!-- Блок form-group -->
+                <div class="form-group">
+                    <label for="theme" class="form-group__label">Тема сайта:</label>
+                    <select id="theme" class="form-group__select">
+                        <option value="dark">Тёмная</option>
+                        <option value="light">Светлая</option>
+                    </select>
+                </div>
+                <button type="submit" class="save-button">Сохранить изменения</button>
+            </form>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__text">&copy; 2025 RW. Все права на игры принадлежат их правообладателям. Все права на упомянутых личностей принадлежат менеджерам.</p>
+    </footer>
+</body>
+</html>

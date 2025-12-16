@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RW - Каталог видеоигр</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Блок header -->
+    <header class="header">
+        <!-- Блок nav -->
+        <nav class="nav">
+            <a href="auth.html" class="logo nav__logo">RW</a>
+            <ul class="nav__list">
+                <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                <li class="nav__item"><a href="collection.html" class="nav__link">Коллекции</a></li>
+                <li class="nav__item"><a href="profile.html" class="nav__link">Профиль</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main">
+        <!-- Блок games-catalog -->
+        <section class="games-catalog">
+            <h1 class="games-catalog__title">Каталог игр</h1>
+            <!-- Блок games-grid -->
+            <div class="games-grid">
+                <!-- Блок game-card -->
+                <div class="game-card">
+                    <a href="game.html" class="game-card__link">
+                        <img src="images/game-cover-witcher.jpg" alt="The Witcher 3" class="game-card__image">
+                        <h3 class="game-card__title">The Witcher 3: Wild Hunt</h3>
+                        <p class="game-card__year year">2015</p> <!-- year остаётся модификатором или вспомогательным классом -->
+                    </a>
+                </div>
+                <!-- Блок game-card -->
+                <div class="game-card">
+                    <a href="game.html" class="game-card__link">
+                        <img src="images/game-cover-cyberpunk.jpg" alt="Cyberpunk 2077" class="game-card__image">
+                        <h3 class="game-card__title">Cyberpunk 2077</h3>
+                        <p class="game-card__year year">2020</p>
+                    </a>
+                </div>
+                <!-- Блок game-card -->
+                <div class="game-card">
+                    <a href="game.html" class="game-card__link">
+                        <img src="images/game-cover-halflife.jpg" alt="Half-Life 2" class="game-card__image">
+                        <h3 class="game-card__title">Half-Life 2</h3>
+                        <p class="game-card__year year">2004</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Блок featured-collections -->
+        <section class="featured-collections">
+            <h2 class="featured-collections__title">Популярные коллекции</h2>
+            <!-- Блок collections-list -->
+            <div id="collectionsListContainer" class="collections-list">
+                <!-- Контент будет загружаться сюда -->
+                <p id="loadingMessage">Загрузка коллекций...</p>
+                <p id="errorMessage" class="error-message" style="display: none; color: red;">Ошибка загрузки коллекций. Проверьте консоль.</p>
+            </div>
+        </section>
+    </main>
+    <!-- Блок footer -->
+    <footer class="footer">
+        <p class="footer__text">&copy; 2025 RW. Все права на игры принадлежат их правообладателям. Все права на упомянутых личностей принадлежат менеджерам.</p>
+    </footer>
+<!-- --- index.html (только измененная часть скрипта) --- -->
+<script>
+    // --- JavaScript для получения и отображения коллекций (Пункты 3 и 4) ---
+    document.addEventListener('DOMContentLoaded', function() {
+        const collectionsContainer = document.getElementById('collectionsListContainer');
+        const loadingMessage = document.getElementById('loadingMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        let intervalId = null;
+
+        // --- Функция получения данных с сервера ---
+        async function fetchCollectionsFromServer() {
+            try {
+                if (collectionsContainer && loadingMessage) {
+                    loadingMessage.style.display = 'block';
+                    errorMessage.style.display = 'none';
+                }
+
+                const response = await fetch('http://localhost:3000/collections'); // Обращаемся к /home
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const responseData = await response.json(); // Получаем весь ответ
+                console.log('Полные данные ответа:', responseData);
+
+                // Извлекаем массив коллекций напрямую из ответа
+                const collectionsData = responseData.collections; // !!! ИСПРАВЛЕНА ЭТА СТРОКА !!!
+
+                if (!collectionsData || !Array.isArray(collectionsData)) {
+                    throw new Error("Не удалось получить массив коллекций из ответа.");
+                }
+
+                console.log('Данные коллекций получены:', collectionsData);
+
+                if (loadingMessage) {
+                    loadingMessage.style.display = 'none';
+                }
+
+                if (collectionsContainer) {
+                    collectionsContainer.innerHTML = '';
+
+                    collectionsData.forEach(collection => {
+                        const collectionItem = document.createElement('div');
+                        collectionItem.className = 'collection-item';
+
+                        collectionItem.innerHTML = `
+                            <a href="collection.html" class="collection-item__link">
+                                <h3 class="collection-item__title">${collection.title}</h3>
+                                <p class="collection-item__description">Подборка от: <span class="collection-item__creator">${collection.user}</span></p>
+                            </a>
+                        `;
+                        collectionsContainer.appendChild(collectionItem);
+                    });
+                }
+
+            } catch (error) {
+                console.error('Ошибка при получении коллекций:', error);
+                if (loadingMessage) {
+                    loadingMessage.style.display = 'none';
+                }
+                if (errorMessage) {
+                    errorMessage.style.display = 'block';
+                }
+            }
+        }
+
+        // --- Загрузка при загрузке страницы ---
+        fetchCollectionsFromServer();
+
+        // --- Установка интервала (Пункт 4) ---
+        const refreshInterval = 300000;
+        intervalId = setInterval(fetchCollectionsFromServer, refreshInterval);
+
+        window.addEventListener('beforeunload', () => {
+            if (intervalId) {
+                clearInterval(intervalId);
+                console.log('Интервал обновления коллекций остановлен.');
+            }
+        });
+
+    });
+</script>
+</body>
+</html>
