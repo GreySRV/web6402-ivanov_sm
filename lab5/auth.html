@@ -74,8 +74,7 @@
         <p class="footer__text">&copy; 2025 RW. Все права на игры принадлежат их правообладателям. Все права на упомянутых личностей принадлежат менеджерам.</p>
     </footer>
 	<script>
-        	// --- JavaScript для пункта 6 (см. web.txt) ---
-        	// 1. Создание класса UserData
+        	// Создание класса UserData
         	class UserData {
             	constructor(login, password, confirmHumanity, statusAfterLogin) {
                 	this.login = login;
@@ -83,7 +82,7 @@
                 	this.confirmHumanity = confirmHumanity;
                 	this.statusAfterLogin = statusAfterLogin;
             	}
-            	// 2. Метод форматированного вывода на консоль
+            	// Метод форматированного вывода на консоль
             	logInfo() {
                 	console.log("--- Данные пользователя ---");
                 	console.log("Логин:", this.login);
@@ -94,7 +93,7 @@
             	}
         	}
 
-        	// --- Новый JavaScript для валидации формы (Пункт 1) ---
+        	// Валидация формы
         	document.addEventListener('DOMContentLoaded', function() {
             		const loginForm = document.getElementById('loginForm');
             		const loginInput = document.getElementById('login');
@@ -104,7 +103,7 @@
             		const loginHint = document.getElementById('loginHint');
             		const passwordHint = document.getElementById('passwordHint');
 
-            		// --- Функции валидации ---
+            		// Функции валидации
             		function validateLogin(value) {
                 		const errors = [];
                 		if (value.length < 3) {
@@ -128,7 +127,7 @@
                 		return errors;
             		}
 
-            		// --- Функция обновления UI для поля ---
+            		// Функция обновления UI для поля
             		function updateFieldUI(inputElement, labelElement, hintElement, errors) {
                 		 if (errors.length > 0) {
                 		     labelElement.style.color = 'var(--text-accent)';
@@ -140,7 +139,7 @@
                 		 }
             		}
 	
-            		// --- Обработчики событий ---
+            		// Обработчики событий
             		if (loginInput && passwordInput) {
                 		loginInput.addEventListener('input', function() {
                 		    const errors = validateLogin(this.value);
@@ -166,7 +165,7 @@
             		}
 	
 	
-            		// --- Модифицированный обработчик submit (Пункт 6 + Пункт 2) ---
+            		// Модифицированный обработчик submit
             		if (loginForm) {
                 		loginForm.addEventListener('submit', async function(event) { // Используем async
                 		    event.preventDefault();
@@ -182,7 +181,7 @@
                 		         return;
                 		    }
 	
-                    		// --- Отправка данных через fetch (Пункт 2) ---
+                    		// Отправка данных
                     		const formData = {
                         		login: loginInput.value,
                         		password: passwordInput.value,
@@ -191,7 +190,7 @@
                     		};
 	
                     		try {
-                        		const response = await fetch('http://localhost:3000/users', { // Замените URL на ваш сервер
+                        		const response = await fetch('http://localhost:3000/users', {
                         		    method: 'POST',
                         		    headers: {
                         		        'Content-Type': 'application/json',
@@ -206,7 +205,7 @@
                         		const result = await response.json();
                         		console.log('Успешно отправлено на сервер:', result);
 	
-                        		// --- Вывод в консоль (Пункт 6) ---
+                        		// Вывод в консоль
                         		// Получаем значения снова, на случай если они изменились между валидацией и fetch
                         		const loginValue = formData.login;
                         		const passwordValue = formData.password;
@@ -218,7 +217,6 @@
 	
                     		} catch (error) {
                         		console.error('Ошибка при отправке данных:', error);
-                        		// Здесь можно добавить отображение ошибки пользователю
                         		alert('Произошла ошибка при отправке данных. Проверьте консоль.');
                     		}
                 	});
