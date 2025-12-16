@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход - RW</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Блок header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="auth.html" class="logo nav__logo">RW</a>
+        </nav>
+    </header>
+    <main class="main">
+        <!-- Блок auth-container -->
+        <div class="auth-container">
+            <!-- Блок cloud-box -->
+            <div class="cloud-box">
+                <h1 class="cloud-box__title">Вход в аккаунт</h1>
+                <!-- Блок login-form -->
+                <form id="loginForm" class="login-form">
+                    <!-- Блок form-row -->
+                    <div class="form-row">
+                        <!-- Блок form-input-group -->
+                        <div class="form-input-group">
+                            <label for="login" class="form-input-group__label">Логин</label>
+                            <input type="text" id="login" name="login" required class="form-input-group__input">
+                            <!-- Добавлен span для подсказки по логину -->
+                            <span id="loginHint" class="form-input-group__hint"></span>
+                        </div>
+                        <!-- Блок form-addon-group -->
+                        <div class="form-addon-group">
+                            <input type="checkbox" id="confirmHumanity" name="confirmHumanity" class="form-addon-group__checkbox">
+                            <label for="confirmHumanity" class="form-addon-group__label">Я подтверждаю, что являюсь мешком с костями</label>
+                        </div>
+                    </div>
+                    <!-- Блок form-row -->
+                    <div class="form-row">
+                        <!-- Блок form-input-group -->
+                        <div class="form-input-group">
+                            <label for="password" class="form-input-group__label">Пароль</label>
+                            <input type="password" id="password" name="password" required class="form-input-group__input">
+                            <!-- Добавлен span для подсказки по паролю -->
+                            <span id="passwordHint" class="form-input-group__hint"></span>
+                        </div>
+                        <!-- Блок form-addon-group -->
+                        <div class="form-addon-group">
+                            <label for="statusAfterLogin" class="form-addon-group__label">Статус после входа</label>
+                            <select id="statusAfterLogin" name="statusAfterLogin" class="form-addon-group__select">
+                                <option value="online">Онлайн</option>
+                                <option value="dnd">Не беспокоить</option>
+                                <option value="invisible">Невидимый</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Блок form-row -->
+                    <div class="form-row">
+                        <!-- Блок form-input-group -->
+                        <div class="form-input-group">
+                            <a href="index.html" class="forgot-password-link form-input-group__link">Забыли пароль?</a>
+                        </div>
+                        <!-- Блок form-addon-group -->
+                        <div class="form-addon-group">
+                            <button type="submit" class="login-button form-addon-group__button">Войти</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p class="footer__text">&copy; 2025 RW. Все права на игры принадлежат их правообладателям. Все права на упомянутых личностей принадлежат менеджерам.</p>
+    </footer>
+	<script>
+        	// --- JavaScript для пункта 6 (см. web.txt) ---
+        	// 1. Создание класса UserData
+        	class UserData {
+            	constructor(login, password, confirmHumanity, statusAfterLogin) {
+                	this.login = login;
+                	this.password = password; // Пароль реализуем, но выводить не будем
+                	this.confirmHumanity = confirmHumanity;
+                	this.statusAfterLogin = statusAfterLogin;
+            	}
+            	// 2. Метод форматированного вывода на консоль
+            	logInfo() {
+                	console.log("--- Данные пользователя ---");
+                	console.log("Логин:", this.login);
+                	// console.log("Пароль:", this.password); // Намеренно не выводим
+                	console.log("Подтверждение 'мешка с костями':", this.confirmHumanity);
+                	console.log("Выбранный статус:", this.statusAfterLogin);
+                	console.log("---------------------------");
+            	}
+        	}
+
+        	// --- Новый JavaScript для валидации формы (Пункт 1) ---
+        	document.addEventListener('DOMContentLoaded', function() {
+            		const loginForm = document.getElementById('loginForm');
+            		const loginInput = document.getElementById('login');
+            		const passwordInput = document.getElementById('password');
+            		const loginLabel = document.querySelector('label[for="login"]');
+            		const passwordLabel = document.querySelector('label[for="password"]');
+            		const loginHint = document.getElementById('loginHint');
+            		const passwordHint = document.getElementById('passwordHint');
+
+            		// --- Функции валидации ---
+            		function validateLogin(value) {
+                		const errors = [];
+                		if (value.length < 3) {
+                		    errors.push('Логин должен быть не менее 3 символов');
+                		}
+                		const forbiddenChars = /[&#$!?,]/g;
+                		if (forbiddenChars.test(value)) {
+                		    errors.push('Логин содержит недопустимые символы (&#$!?,)');
+                		}
+                		return errors;
+            		}
+
+            		function validatePassword(value) {
+                		const errors = [];
+                		if (value.length < 8) {
+                		    errors.push('Пароль должен быть не менее 8 символов');
+                		}
+                		if (!/[A-Z]/.test(value) || !/[a-z]/.test(value)) {
+                		     errors.push('Пароль должен содержать заглавные и строчные буквы');
+                		}
+                		return errors;
+            		}
+
+            		// --- Функция обновления UI для поля ---
+            		function updateFieldUI(inputElement, labelElement, hintElement, errors) {
+                		 if (errors.length > 0) {
+                		     labelElement.style.color = 'var(--text-accent)';
+                		     hintElement.textContent = errors[0];
+                		     hintElement.style.color = 'var(--text-muted)';
+                		 } else {
+                		     labelElement.style.color = 'var(--text-secondary)';
+                		     hintElement.textContent = '';
+                		 }
+            		}
+	
+            		// --- Обработчики событий ---
+            		if (loginInput && passwordInput) {
+                		loginInput.addEventListener('input', function() {
+                		    const errors = validateLogin(this.value);
+                		    updateFieldUI(this, loginLabel, loginHint, errors);
+                		});
+		
+                		loginInput.addEventListener('blur', function() {
+                		    const errors = validateLogin(this.value);
+                		    updateFieldUI(this, loginLabel, loginHint, errors);
+                		});
+		
+                		passwordInput.addEventListener('input', function() {
+                		    const errors = validatePassword(this.value);
+                		    updateFieldUI(this, passwordLabel, passwordHint, errors);
+                		});
+		
+                		passwordInput.addEventListener('blur', function() {
+                		    const errors = validatePassword(this.value);
+                		    updateFieldUI(this, passwordLabel, passwordHint, errors);
+                		});
+            		} else {
+                		 console.error("Элементы формы валидации не найдены!");
+            		}
+	
+	
+            		// --- Модифицированный обработчик submit (Пункт 6 + Пункт 2) ---
+            		if (loginForm) {
+                		loginForm.addEventListener('submit', async function(event) { // Используем async
+                		    event.preventDefault();
+		
+                		    const loginErrors = validateLogin(loginInput.value);
+                		    const passwordErrors = validatePassword(passwordInput.value);
+		
+                		    updateFieldUI(loginInput, loginLabel, loginHint, loginErrors);
+                		    updateFieldUI(passwordInput, passwordLabel, passwordHint, passwordErrors);
+		
+                		    if (loginErrors.length > 0 || passwordErrors.length > 0) {
+                		         console.log("Форма содержит ошибки. Отправка отменена.");
+                		         return;
+                		    }
+	
+                    		// --- Отправка данных через fetch (Пункт 2) ---
+                    		const formData = {
+                        		login: loginInput.value,
+                        		password: passwordInput.value,
+                        		confirmHumanity: document.getElementById('confirmHumanity').checked,
+                        		statusAfterLogin: document.getElementById('statusAfterLogin').value
+                    		};
+	
+                    		try {
+                        		const response = await fetch('http://localhost:3000/users', { // Замените URL на ваш сервер
+                        		    method: 'POST',
+                        		    headers: {
+                        		        'Content-Type': 'application/json',
+                        		    },
+                        		    body: JSON.stringify(formData),
+                        		});
+	
+                        		if (!response.ok) {
+                        		    throw new Error(`HTTP error! status: ${response.status}`);
+                        		}
+	
+                        		const result = await response.json();
+                        		console.log('Успешно отправлено на сервер:', result);
+	
+                        		// --- Вывод в консоль (Пункт 6) ---
+                        		// Получаем значения снова, на случай если они изменились между валидацией и fetch
+                        		const loginValue = formData.login;
+                        		const passwordValue = formData.password;
+                        		const confirmHumanityValue = formData.confirmHumanity;
+                        		const statusValue = formData.statusAfterLogin;
+		
+                        		const user = new UserData(loginValue, passwordValue, confirmHumanityValue, statusValue);
+                        		user.logInfo(); // Вызов метода для вывода в консоль
+	
+                    		} catch (error) {
+                        		console.error('Ошибка при отправке данных:', error);
+                        		// Здесь можно добавить отображение ошибки пользователю
+                        		alert('Произошла ошибка при отправке данных. Проверьте консоль.');
+                    		}
+                	});
+            	} else {
+               		console.error("Форма с id 'loginForm' не найдена!");
+            	}
+        	});
+    	</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход - RW</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Блок header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="auth.html" class="logo nav__logo">RW</a>
+        </nav>
+    </header>
+
+    <main class="main">
+        <!-- Блок auth-container -->
+        <div class="auth-container">
+            <!-- Блок cloud-box -->
+            <div class="cloud-box">
+                <h1 class="cloud-box__title">Вход в аккаунт</h1>
+                <!-- Блок login-form -->
+                <form id="loginForm" class="login-form">
+                    <!-- Блок form-row -->
+                    <div class="form-row">
+                        <!-- Блок form-input-group -->
+                        <div class="form-input-group">
+                            <label for="login" class="form-input-group__label">Логин</label>
+                            <input type="text" id="login" name="login" required class="form-input-group__input">
+                        </div>
+                        <!-- Блок form-addon-group -->
+                        <div class="form-addon-group">
+                            <input type="checkbox" id="confirmHumanity" name="confirmHumanity" class="form-addon-group__checkbox">
+                            <label for="confirmHumanity" class="form-addon-group__label">Я подтверждаю, что являюсь мешком с костями</label>
+                        </div>
+                    </div>
+
+                    <!-- Блок form-row -->
+                    <div class="form-row">
+                        <!-- Блок form-input-group -->
+                        <div class="form-input-group">
+                            <label for="password" class="form-input-group__label">Пароль</label>
+                            <input type="password" id="password" name="password" required class="form-input-group__input">
+                        </div>
+                        <!-- Блок form-addon-group -->
+                        <div class="form-addon-group">
+                            <label for="statusAfterLogin" class="form-addon-group__label">Статус после входа</label>
+                            <select id="statusAfterLogin" name="statusAfterLogin" class="form-addon-group__select">
+                                <option value="online">Онлайн</option>
+                                <option value="dnd">Не беспокоить</option>
+                                <option value="invisible">Невидимый</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Блок form-row -->
+                    <div class="form-row">
+                        <!-- Блок form-input-group -->
+                        <div class="form-input-group">
+                            <a href="index.html" class="forgot-password-link form-input-group__link">Забыли пароль?</a>
+                        </div>
+                        <!-- Блок form-addon-group -->
+                        <div class="form-addon-group">
+                            <button type="submit" class="login-button form-addon-group__button">Войти</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p class="footer__text">&copy; 2025 RW. Все права на игры принадлежат их правообладателям. Все права на упомянутых личностей принадлежат менеджерам.</p>
+    </footer>
+
+    <script>
+        // --- JavaScript для пункта 6 ---
+        // 1. Создание класса UserData
+        class UserData {
+            constructor(login, password, confirmHumanity, statusAfterLogin) {
+                this.login = login;
+                this.password = password; // Пароль реализуем, но выводить не будем
+                this.confirmHumanity = confirmHumanity;
+                this.statusAfterLogin = statusAfterLogin;
+            }
+
+            // 2. Метод форматированного вывода на консоль
+            logInfo() {
+                console.log("--- Данные пользователя ---");
+                console.log("Логин:", this.login);
+                // console.log("Пароль:", this.password); // Намеренно не выводим
+                console.log("Подтверждение 'мешка с костями':", this.confirmHumanity);
+                console.log("Выбранный статус:", this.statusAfterLogin);
+                console.log("---------------------------");
+            }
+        }
+
+        // 3. Получение формы и добавление обработчика события
+        document.addEventListener('DOMContentLoaded', function() { // Убедимся, что DOM загружен
+            const loginForm = document.getElementById('loginForm');
+
+            if (loginForm) { // Проверяем, существует ли форма
+                loginForm.addEventListener('submit', function(event) {
+                    // 4. Предотвращение отправки формы
+                    event.preventDefault();
+
+                    // 5. Получение значений из полей формы
+                    const loginValue = document.getElementById('login').value;
+                    const passwordValue = document.getElementById('password').value;
+                    const confirmHumanityValue = document.getElementById('confirmHumanity').checked; // .checked для чекбокса
+                    const statusValue = document.getElementById('statusAfterLogin').value;
+
+                    // 6. Создание объекта и вызов метода
+                    const user = new UserData(loginValue, passwordValue, confirmHumanityValue, statusValue);
+                    user.logInfo(); // Вызов метода для вывода в консоль
+                });
+            } else {
+                console.error("Форма с id 'loginForm' не найдена!");
+            }
+        });
+
+    </script>
+</body>
+</html>
