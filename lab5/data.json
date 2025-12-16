@@ -5,7 +5,7 @@
                 {"id":1,"title": "Лучшие RPG всех времён","user": "AngryVideoGameNerd"},
                 {"id":2,"title": "Совсем не инди-игры","user": "Zulin's v-log"},
                 {"id":3,"title": "Игры, которые стоит пройти хотя бы раз","user": "Alex Krop"},
-    		{"id":4,"title": "Отсылки к JoJo","user": "theDRZJ"}
+    		    {"id":4,"title": "Отсылки к JoJo","user": "theDRZJ"}
             ]
         }
     },
